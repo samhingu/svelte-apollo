@@ -1,10 +1,11 @@
 import type { ApolloClient } from "@apollo/client/core";
-import { getContext, setContext } from "svelte";
+// import { getContext, setContext } from "svelte";
 
-const CLIENT = typeof Symbol !== "undefined" ? Symbol("client") : "@@client";
+// const CLIENT = typeof Symbol !== "undefined" ? Symbol("client") : "@@client";
+let clientInstance: ApolloClient<any>;
 
 export function getClient<TCache = any>(): ApolloClient<TCache> {
-	const client = getContext(CLIENT);
+	const client = clientInstance;
 
 	if (!client) {
 		throw new Error(
@@ -16,5 +17,6 @@ export function getClient<TCache = any>(): ApolloClient<TCache> {
 }
 
 export function setClient<TCache = any>(client: ApolloClient<TCache>): void {
-	setContext(CLIENT, client);
+	clientInstance = client;
+	// setContext(CLIENT, client);
 }

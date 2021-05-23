@@ -76,9 +76,7 @@ export interface ObservableQueryExtensions<TData = unknown> {
 	getCurrentResult: ObservableQuery<TData>["getCurrentResult"];
 	getLastError: ObservableQuery<TData>["getLastError"];
 	getLastResult: ObservableQuery<TData>["getLastResult"];
-	isDifferentFromLastResult: ObservableQuery<
-		TData
-	>["isDifferentFromLastResult"];
+	isDifferentFromLastResult: ObservableQuery<TData>["isDifferentFromLastResult"];
 	refetch: ObservableQuery<TData>["refetch"];
 	resetLastResults: ObservableQuery<TData>["resetLastResults"];
 	resetQueryStoreErrors: ObservableQuery<TData>["resetQueryStoreErrors"];
@@ -119,9 +117,10 @@ export function observableQueryToReadable<
 	query: ObservableQuery<TData, TVariables>,
 	initialValue?: Result<TData>
 ): ReadableQuery<TData> {
-	const store = observableToReadable(query, initialValue) as ReadableQuery<
-		TData
-	>;
+	const store = observableToReadable(
+		query,
+		initialValue
+	) as ReadableQuery<TData>;
 
 	for (const extension of extensions) {
 		store[extension] = query[extension].bind(query) as any;
