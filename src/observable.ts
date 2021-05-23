@@ -1,5 +1,9 @@
 import { ApolloError } from "@apollo/client/core";
-import type { FetchResult, Observable, ObservableQuery } from "@apollo/client";
+import type {
+	FetchResult,
+	Observable,
+	ObservableQuery,
+} from "@apollo/client/core";
 import { readable } from "svelte/store";
 import { Readable } from "svelte/store";
 
@@ -72,7 +76,9 @@ export interface ObservableQueryExtensions<TData = unknown> {
 	getCurrentResult: ObservableQuery<TData>["getCurrentResult"];
 	getLastError: ObservableQuery<TData>["getLastError"];
 	getLastResult: ObservableQuery<TData>["getLastResult"];
-	isDifferentFromLastResult: ObservableQuery<TData>["isDifferentFromLastResult"];
+	isDifferentFromLastResult: ObservableQuery<
+		TData
+	>["isDifferentFromLastResult"];
 	refetch: ObservableQuery<TData>["refetch"];
 	resetLastResults: ObservableQuery<TData>["resetLastResults"];
 	resetQueryStoreErrors: ObservableQuery<TData>["resetQueryStoreErrors"];
