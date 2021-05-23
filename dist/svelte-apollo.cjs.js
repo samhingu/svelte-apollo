@@ -2,20 +2,23 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var svelte = require('svelte');
 var core = require('@apollo/client/core');
 var store = require('svelte/store');
+var svelte = require('svelte');
 
-var CLIENT = typeof Symbol !== "undefined" ? Symbol("client") : "@@client";
+// import { getContext, setContext } from "svelte";
+// const CLIENT = typeof Symbol !== "undefined" ? Symbol("client") : "@@client";
+var clientInstance;
 function getClient() {
-    var client = svelte.getContext(CLIENT);
+    var client = clientInstance;
     if (!client) {
         throw new Error("ApolloClient has not been set yet, use setClient(new ApolloClient({ ... })) to define it");
     }
     return client;
 }
 function setClient(client) {
-    svelte.setContext(CLIENT, client);
+    clientInstance = client;
+    // setContext(CLIENT, client);
 }
 
 /*! *****************************************************************************
